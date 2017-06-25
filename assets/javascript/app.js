@@ -19,8 +19,6 @@
      	place = autocomplete.getPlace();
     }
 
-//https://api.breezometer.com/baqi/?lat=28.3338002802915&lon=-81.3577900697085&key=de4fef0f7fb349f29f3f21c275018069&fields=breezometer_aqi,random_recommendations,breezometer_color,breezometer_description,pollutants
-//f17090c3cf4a448f981b47f391d41295
     //get breezeOmeter data
     function getBOM (lat, lng) {   
         var fields = "&breezometer_aqi,random_recommendations,breezometer_color,breezometer_description,pollutants"           
@@ -29,21 +27,22 @@
             url: queryURL, 
             method: 'GET',
         }).done(function(response) {
-            aqi = response.breezometer_aqi;
-            color = response.breezometer_color;
-            description = response.breezometer_description;
-            recoChildren = response.random_recommendations.children;
-            recoHealth = response.random_recommendations.health;
-            recInside = response.random_recommendations.inside;
-            recOutside = response.random_recommendations.outside;
-            recSport = response.random_recommendations.sport;
+            var aqi = response.breezometer_aqi;
+            var color = response.breezometer_color;
+            var description = response.breezometer_description;
+            var recoChildren = response.random_recommendations.children;
+            var recoHealth = response.random_recommendations.health;
+            var recInside = response.random_recommendations.inside;
+            var recOutside = response.random_recommendations.outside;
+            var recSport = response.random_recommendations.sport;
 
-            co = response.pollutants.co.concentration;
-            coDesc = response.pollutants.co.pollutant_description;
-            no2 = response.pollutants.no2.concentration;
-            no2Desc = response.pollutants.no2.pollutant_description;
-            o3 = response.pollutants.o3.concentration;
-            o3Desc = response.pollutants.o3.pollutant_description;
+            var co = response.pollutants.co.concentration;
+            var coDesc = response.pollutants.co.pollutant_description;
+            var no2 = response.pollutants.no2.concentration;
+            var no2Desc = response.pollutants.no2.pollutant_description;
+            var o3 = response.pollutants.o3.concentration;
+            var o3Desc = response.pollutants.o3.pollutant_description;
+
             console.log("aqi: " + aqi);
             console.log("Color: " + color);
             console.log("Description: " + description);
@@ -92,17 +91,19 @@ $(document).ready(function(){
      		}
      	}
     });
+
+    //twitter
+    $('#twitterButton').on('click', function (){
+        var text = "Our air qaulity index is" +aqi+ "this is terrible";
+        var twitterName;
+        var hashtags = "magaPolution, fixItNow";
+        $(this).attr('data-text', text);
+        $(this).attr('data-via', twitterName);
+        $(this).attr('data-hashtags', hashtags);
+        
+      
+    });
 })
 
-//twitter
 
-$('#twitterButton').on('click', function (){
-    var text = "Our air qaulity index is" +aqi+ "this is terrible";
-    var twitterName;
-    var hashtags = "magaPolution", "fixItNow";
-    $(this).attr('data-text', text);
-    $(this).attr('data-via', twitterName);
-    $(this).attr('data-hashtags', hashtags);
-    
-  
-});
+

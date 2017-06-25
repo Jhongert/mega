@@ -92,6 +92,7 @@ $(document).ready(function(){
      	}
     });
 
+
     //twitter
     $('#twitterButton').on('click', function (){
         var text = "Our air qaulity index is" +aqi+ "this is terrible";
@@ -100,8 +101,6 @@ $(document).ready(function(){
         $(this).attr('data-text', text);
         $(this).attr('data-via', twitterName);
         $(this).attr('data-hashtags', hashtags);
-        
-      
     });
 })
 

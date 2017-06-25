@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Page 2 pollution app</title>
+	<!--Linked css-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style3.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>		
+
+
+
+	<div class="container">
+
+
+
+		  
+		  <!-- Wrapper for slides -->
+		 <div class="carousel-inner">
+		    <div class="item slides active">
+		      <div class="hero">
+		        <hgroup class="headerCss">
+		            <h1 >MEGA</h1>        
+		            <h3>Make America Great Again</h3>
+		        </hgroup>
+		      
+		      </div>
+		    </div>
+		   
+		 </div>
+
+		
+
+		<div class="row">
+
+			<div class="col-md-2">
+			</div>
+
+			
+
+			<div class="col-md-8">
+				
+				<div class="panel panel-default" id="aqPanel">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Air Quality</h3>
+				  </div>
+				  <div class="panel-body">
+				  <!--Put the search bar, map, aq in (city), its safe/not safe bar, recommendation area in this Div-->
+
+					<div id="imaginary_container"> 
+		                <div class="input-group stylish-input-group">
+		                    <input type="text" class="form-control" id="location" placeholder="Location (city or zip code)" >
+		                    <span class="input-group-addon">
+		                       
+		                            <span><button type="input" id="aqSearch">Search</button></span>
+		                        
+		                    </span>
+		                </div>
+		            </div>
+
+		            <div  style="width:150px;height:150px;">
+
+		            	<img class="aqIndexpic" src="http://charmeck.org/mecklenburg/county/LUESA/SOER/PublishingImages/aqcolorcode.jpg">
+
+		            </div>
+
+		            <div id="googleMap" style="width:400px;height:400px;">
+		            <!--google map goes here-->
+		            </div>
+
+					<div>AQI in <span id="AQIcity"> <!--city dynamically inserted--> </span> is <span id="indexNumber"> <!--index number dynamically added--> </span> </div> 
+
+					<br><br>
+
+					<div class="panel panel-default">
+					  <div class="panel-body"><span id="aqSafeStatus"><!--If the AQ is safe or not/ changes color of box accordingly--></span></div>
+					</div>
+
+					<br>
+
+					<div class="panel panel-default">
+					  <div class="panel-body"> Recommendations:<span id="aqRecommendation"><!--Recommendations according to AQ level--></span></div>
+					</div>
+
+
+				   
+
+				  </div>
+				</div>
+
+			</div>
+
+			<div class="col-md-2">
+			</div>
+
+		</div>
+
+<!--Row will have the representative info-->
+		<div class="row">
+			
+			<div class="col-md-2">
+			</div>
+
+			<div class="col-md-8">
+
+				<div class="panel panel-default" id="aqPanel">
+
+				  <div class="panel-heading">
+
+				    <h3 class="panel-title">Air Quality</h3>
+				  </div>
+
+				 	<div class="panel-body">
+				  <!--Put the search bar, map, aq in (city), its safe/not safe bar, recommendation area in this Div-->
+
+						<div id="imaginary_container"> 
+
+					<!--Tweet your representative the results, rep 1 (info and twitter) and rep 2 (info and twitter)-->
+
+
+
+							<div class="col-sm-6" >
+								<!--Rep 1 info-->
+								
+
+								<div class="panel panel-default">
+								  <div class="panel-heading"><h4><span id="repName"><!--Rep 1 name --></span></h4></div>
+								  <div class="panel-body">
+								  	<ul>
+								  		<li><span id="repPhone"><!--Reps phone number--></span></li>
+								  		<li><span id="repAddress"><!--Reps Address--></span></li>
+								  	</ul>
+
+								  	<button id="repTwitter" type="Submit">Tweet your Representative!</button>
+								  </div>
+								</div>
+
+
+							</div>
+
+							
+							<div class="col-sm-6" >
+								<!--Rep 2 info-->
+								
+
+								<div class="panel panel-default">
+								  <div class="panel-heading"><h4><span id="repName"><!--Rep 2 name --></span></h4></div>
+								  <div class="panel-body">
+								  	<ul>
+								  		<li><span id="repPhone"><!--Reps phone number--></span></li>
+								  		<li><span id="repAddress"><!--Reps Address--></span></li>
+								  	</ul>
+
+								  	<button id="repTwitter" type="Submit">Tweet your Representative!</button>
+								  </div>
+								</div>
+
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-2">
+			</div>
+			
+
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

@@ -53,11 +53,12 @@
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
+
             lat = place.geometry.location.lat();
             lng = place.geometry.location.lng();
             
             getBOM(lat, lng);
-            getProPublica();      
+            getProPublica("FL");      
         });
     }
 
@@ -127,17 +128,32 @@
         });
     };
 
-    function getProPublica(){
+    function getProPublica(state){
         $.ajax({
-            url: "https://api.propublica.org/congress/v1/115/senate/members.json",
+            url: "https://api.propublica.org/congress/v1/members/senate/" + state + "/current.json",
             type: "GET",
             dataType: 'json',
             headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
         }).done(function(data){
-            console.log(data)
+            $.ajax({
+                url: data.results[0].api_uri,
+                type: "GET",
+                dataType: 'json',
+                headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
+            }).done(function(data){
+                console.log(data);
+            });
+
+            $.ajax({
+                url: data.results[1].api_uri,
+                type: "GET",
+                dataType: 'json',
+                headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
+            }).done(function(data){
+                console.log(data);
+            });
         });
     }
-
 
 $(document).ready(function(){
 

@@ -53,11 +53,11 @@
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
-                lat = place.geometry.location.lat();
-                lng = place.geometry.location.lng();
+            lat = place.geometry.location.lat();
+            lng = place.geometry.location.lng();
             
-                getBOM(lat, lng);
-                getProPublica();      
+            getBOM(lat, lng);
+            getProPublica();      
         });
     }
 
@@ -86,14 +86,33 @@
             var o3 = response.pollutants.o3.concentration;
             var o3Desc = response.pollutants.o3.pollutant_description;
 
-            console.log("aqi: " + aqi);
+            var aqInfo = $("#aq-info");
+
+            var p = $("<p>").text("AQI: " + aqi);
+            aqInfo.append(p);
+
+            p = $("<p>").text("Description: " + description);
+            aqInfo.append(p);
+
             console.log("Color: " + color);
-            console.log("Description: " + description);
-            console.log("Recommendations for children: " + recoChildren);
-            console.log("Recommendations for Helath: " + recoHealth);
-            console.log("Recommendations for inside: " + recInside);
-            console.log("Recommendations for outside: " + recOutside);
-            console.log("Recommendations for sport: " + recSport);
+           
+            var aqRecommendation = $("#aqRecommendation");
+            p = $("<p>").text("Childre: " + recoChildren);
+            aqRecommendation.append(p);
+
+            p = $("<p>").text("Health: " + recoHealth);
+            aqRecommendation.append(p);
+
+            p = $("<p>").text("Inside: " + recInside);
+            aqRecommendation.append(p);
+            
+            p = $("<p>").text("Outside: " + recOutside);
+            aqRecommendation.append(p);
+            
+            p = $("<p>").text("Sport: " + recSport);
+            aqRecommendation.append(p);
+
+            
 
             console.log("Co: " + co);
             console.log("Co Rescription: " + coDesc);

@@ -1,27 +1,70 @@
 
 	var placeSearch, autocomplete;
 	var place = {}, lat, lng;
+    var mao, infowindow, marker, infowindowContent;
 
 	function initAutocomplete() {
+        // Create the map
+            map = new google.maps.Map(document.getElementById('googleMap'),{
+            center: {lat: 37.1, lng: -95.7},
+            zoom: 3,
+            mapTypeControl: false,
+            panControl: false,
+            zoomControl: false,
+            streetViewControl: false
+        });
     	// Create the autocomplete object, restricting the search to geographical
         // location types.
         autocomplete = new google.maps.places.Autocomplete(
         	(document.getElementById("location")),
-            {types: ['geocode']
+            {types: ['geocode'],
+            country: 'us'
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
         });
 
         // When the user selects an location from the dropdown, get de geometry location (lat,lng).
-        autocomplete.addListener('place_changed', getGeometry);
+        autocomplete.addListener('place_changed', function(){
+            infowindow.close();
+            marker.setVisible(false);
+            $(".text-danger").remove();
+            // Get the location from the autocomplete object.
+            place = autocomplete.getPlace();
+            var location = $("#location");
+            
+            if(!place.geometry){
+                location.after('<p class= text-danger>Please enter a valid location.</p>');
+                return;
+            }
+
+            if(place.geometry.viewport){
+                map.fitBounds(place.geometry.viewport);
+            }else{
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+                lat = place.geometry.location.lat();
+                lng = place.geometry.location.lng();
+            
+                getBOM(lat, lng);
+                getProPublica();      
+        });
     }
 
-    function getGeometry() {
-   		// Get the location from the autocomplete object.
-     	place = autocomplete.getPlace();
-    }
 
     //get breezeOmeter data
     function getBOM (lat, lng) {   
-        var fields = "&breezometer_aqi,random_recommendations,breezometer_color,breezometer_description,pollutants"           
+        var fields = "&fields=breezometer_aqi,random_recommendations,breezometer_color,breezometer_description,pollutants"           
         var queryURL = 'https://api.breezometer.com/baqi/?lat='+lat+'&lon='+lng+'&key=de4fef0f7fb349f29f3f21c275018069' + fields;
         $.ajax({
             url: queryURL, 
@@ -58,7 +101,11 @@
             console.log("No2 description: " + no2Desc);
             console.log("o3: " + o3);
             console.log("o3Desc: " + o3Desc);
-        })
+
+            infowindowContent.children['aqiValue'].textContent = aqi;
+            infowindowContent.children['aqiDescription'].textContent = description;
+            infowindow.open(map, marker);
+        });
     };
 
     function getProPublica(){
@@ -74,24 +121,6 @@
 
 
 $(document).ready(function(){
-	//Button search click event
-	$("#aqSearch").on("click", function () {
-		var location = $("#location");
-		if(location.val().trim() == ""){
-			location.after('<p class= text-danger>Please enter a location: Address, City, Zip code.</p>');
-		} else {
-			if(!place.geometry){
-      			location.after('<p class= text-danger>Please enter a valid location.</p>');
-    		}else{
-     			lat = place.geometry.location.lat();
-     			lng = place.geometry.location.lng();
-   
-    			getBOM(lat, lng);
-                getProPublica();
-     		}
-     	}
-    });
-
 
     //twitter
     $('#twitterButton').on('click', function (){

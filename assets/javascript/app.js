@@ -102,7 +102,7 @@
             console.log("o3: " + o3);
             console.log("o3Desc: " + o3Desc);
 
-            infowindowContent.children['aqiValue'].textContent = aqi;
+            infowindowContent.children['aqiValue'].textContent = "AQI: " + aqi;
             infowindowContent.children['aqiDescription'].textContent = description;
             infowindow.open(map, marker);
         });

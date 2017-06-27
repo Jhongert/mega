@@ -23,6 +23,13 @@
             zoomControl: false,
             streetViewControl: false
         });
+
+        google.maps.event.addDomListener(window, "resize", function() {
+            var center = map.getCenter();
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        });
+
     	// Create the autocomplete object, restricting the search to geographical
         // location types.
         autocomplete = new google.maps.places.Autocomplete(
@@ -107,10 +114,19 @@
             p = $("<p>").text("Description: " + description);
             aqInfo.append(p);
 
+            p = $("<p>").text(coDesc + ": " + co);
+            aqInfo.append(p);
+
+            p = $("<p>").text(no2Desc + ": " + no2);
+            aqInfo.append(p);
+            
+             p = $("<p>").text(o3Desc + ": " + o3);
+            aqInfo.append(p);
+
             console.log("Color: " + color);
            
             var aqRecommendation = $("#aqRecommendation");
-            p = $("<p>").text("Childre: " + recoChildren);
+            p = $("<p>").text("Children: " + recoChildren);
             aqRecommendation.append(p);
 
             p = $("<p>").text("Health: " + recoHealth);
@@ -125,14 +141,6 @@
             p = $("<p>").text("Sport: " + recSport);
             aqRecommendation.append(p);
 
-            
-
-            console.log("Co: " + co);
-            console.log("Co Rescription: " + coDesc);
-            console.log("No2: " + no2);
-            console.log("No2 description: " + no2Desc);
-            console.log("o3: " + o3);
-            console.log("o3Desc: " + o3Desc);
 
             infowindowContent.children['aqiValue'].textContent = "AQI: " + aqi;
             infowindowContent.children['aqiDescription'].textContent = description;
@@ -153,7 +161,17 @@
                 dataType: 'json',
                 headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
             }).done(function(data){
-                console.log(data);
+                var result = data.results[0];
+                var firstSenator = $("#first-senator");
+                var p = $("<p>").text("Name: " + result.first_name + " " + result.middle_name + " " +result.last_name);
+                firstSenator.append(p);
+
+                p = $("<p>").text("Website: ");
+                a = $("<a>");
+                a.text(result.url).attr({href: result.url, target: "_blank"});
+                p.append(a);
+                firstSenator.append(p);
+
             });
 
             $.ajax({
@@ -163,6 +181,16 @@
                 headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
             }).done(function(data){
                 console.log(data);
+                var result = data.results[0];
+                var secondSenator = $("#second-senator");
+                var p = $("<p>").text("Name: " + result.first_name + " " + result.middle_name + " " +result.last_name);
+                secondSenator.append(p);
+
+                p = $("<p>").text("Website: ");
+                a = $("<a>");
+                a.text(result.url).attr({href: result.url, target: "_blank"});
+                p.append(a);
+                secondSenator.append(p);
             });
         });
     }

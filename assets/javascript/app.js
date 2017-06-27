@@ -3,6 +3,16 @@
 	var place = {}, lat, lng;
     var mao, infowindow, marker, infowindowContent;
 
+    function getState(array){
+        for (var i = 0; i < array.length; i++) {
+            if (array[i].types[0] === "administrative_area_level_1") {
+                var state = array[i].short_name;
+                return state;
+            }
+        }
+
+    }
+
 	function initAutocomplete() {
         // Create the map
             map = new google.maps.Map(document.getElementById('googleMap'),{
@@ -53,12 +63,14 @@
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
-
             lat = place.geometry.location.lat();
             lng = place.geometry.location.lng();
             
+            //Get the state from the location
+            var state = getState(place.address_components);
+
             getBOM(lat, lng);
-            getProPublica("FL");      
+            getProPublica(state);      
         });
     }
 

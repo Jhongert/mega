@@ -58,3 +58,9 @@ function fbLogout() {
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
 }
+
+$(document).ready(function(){
+    $('#fbLink').click(function(){
+        fbLogin();
+    })
+})

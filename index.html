@@ -1,62 +1,54 @@
 <!DOCTYPE >
 <html>
-<head>
-<meta charset="utf-8">
-	<title>M.E.G.A</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-<body>
-     <div class="inner">
-          <h3 class="masthead-brand">M.E.G.A</h3>
+    <head>
+        <meta charset="utf-8">
+	    <title>M.E.G.A</title>
+	
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body>
+        <header class="container">
+            <div class="row">
+                <hgroup class="headerCss text-center">
+                    <h1>MEGA</h1>        
+                    <h3>Make America Great Again</h3>
+                </hgroup>
+            </div>
+        </header>
+        
+        <main class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="intro">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div id="status"></div>
 
-          <ul class="nav masthead-nav">
-            <li class="active">
-             
-            </li>
+                    <!-- Facebook login or logout button -->
+                    <a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="fblogin.png"/></a>
 
-            <li>
-              <a href="#">Log In</a>
-            </li>
+                    <!-- Display user profile data -->
+                    <div id="userData"></div>
 
-            <li>
-              <a href="#">Sign Up</a>
-            </li>
-          </ul>
-        </div>
-    
-
-      <div class="inner cover">
-        <h1 class="cover-heading">Make Earth Great Again.</h1>
-
-        <p class="lead">Cover is a one-page template for building simple and
-        beautiful home pages. Download, edit the text, and add your own
-        fullscreen background color and photo to make it your own.
-            
-        <small>  </small>
-            
-        </p>
-
-        <p class="lead"><a class="btn btn-lg btn-info" href="#">Getting Started</a></p>
-      </div>
-
-      <div class="mastfoot">
-        <div class="inner">
-       
-
-        </div>
-      </div>
- 
+                </div>
+            </div>
+        </main>
 
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/java/attention.js"></script>
-
-
-</body>
-    </html>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="assets/javascript/login.js"></script>
+    </body>
+</html>

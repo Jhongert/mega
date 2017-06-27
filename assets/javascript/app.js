@@ -227,7 +227,7 @@ $(document).ready(function(){
     }(document, 'script', 'facebook-jssdk'));
 
     //twitter
-    $('#twitter-button').on('click', function (){
+    $('.twitter-share-button').on('click', function (){
         var text = "Our air qaulity index is" +aqi+ "this is terrible";
         $(this).attr('data-text', text);
     });

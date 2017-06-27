@@ -1,7 +1,7 @@
 
-	var placeSearch, autocomplete;
+	var autocomplete;
 	var place = {}, lat, lng;
-    var mao, infowindow, marker, infowindowContent;
+    var map, infowindow, marker, infowindowContent;
 
     function getState(array){
         for (var i = 0; i < array.length; i++) {
@@ -10,12 +10,11 @@
                 return state;
             }
         }
-
     }
 
 	function initAutocomplete() {
         // Create the map
-            map = new google.maps.Map(document.getElementById('googleMap'),{
+        map = new google.maps.Map(document.getElementById('googleMap'),{
             center: {lat: 37.1, lng: -95.7},
             zoom: 3,
             mapTypeControl: false,
@@ -24,6 +23,7 @@
             streetViewControl: false
         });
 
+        //change the map size when window resize
         google.maps.event.addDomListener(window, "resize", function() {
             var center = map.getCenter();
             google.maps.event.trigger(map, "resize");

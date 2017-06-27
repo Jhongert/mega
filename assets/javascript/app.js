@@ -189,6 +189,7 @@
         FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email'},
         function (response) {
             document.getElementById('welcome').innerHTML = 'Welcome, ' + response.first_name+' '+response.last_name;
+            document.getElementById('welcome').style.display = 'inline';
         });
     }
 

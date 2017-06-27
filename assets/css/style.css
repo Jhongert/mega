@@ -72,9 +72,14 @@ td:nth-child(even) {
     color: #fff;
 }
 
+#aqi-info {
+    display: none;
+}
+
 #aqRecommendation {
     margin-top: 20px;
     border-top: 1px solid #eee;
+    display: none;
 }
 
 .text-danger{

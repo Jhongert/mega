@@ -13,7 +13,7 @@
     }
 
 	function initAutocomplete() {
-        // Create the map
+            // Create the map
         map = new google.maps.Map(document.getElementById('googleMap'),{
             center: {lat: 37.1, lng: -95.7},
             zoom: 3,
@@ -227,7 +227,7 @@ $(document).ready(function(){
     }(document, 'script', 'facebook-jssdk'));
 
     //twitter
-    $('#twitter-button').on('click', function (){
+    $('.twitter-share-button').on('click', function (){
         var text = "Our air qaulity index is" +aqi+ "this is terrible";
         $(this).attr('data-text', text);
     });

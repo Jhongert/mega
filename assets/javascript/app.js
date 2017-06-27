@@ -204,16 +204,16 @@ $(document).ready(function(){
         });
         
         // Check whether the user already logged in
-        // FB.getLoginStatus(function(response) {
-        //     if (response.status === 'connected') {
-        //         document.getElementById('main').style.display = 'block';
-        //         document.getElementById('logout').style.display = 'inline';
-        //         //display user data
-        //         getFBUserData();
-        //     } else {
-        //         window.location.replace('index.html');
-        //     }
-        // });
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                document.getElementById('main').style.display = 'block';
+                document.getElementById('logout').style.display = 'inline';
+                //display user data
+                getFBUserData();
+            } else {
+                window.location.replace('index.html');
+            }
+        });
     };
 
     // Load the JavaScript SDK asynchronously

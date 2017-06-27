@@ -31,11 +31,8 @@
 			    FB.getLoginStatus(function(response) {
 			    	console.log("in main " + response.status);
 			        if (response.status === 'connected') {
-			        	//show the main content
-			        	$('#main').show();
 			            //display user data
-			        } else{
-			            window.location.replace('index.html');
+			            getFbUserData();
 			        }
 			    });
 			};

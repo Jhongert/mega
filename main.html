@@ -31,7 +31,7 @@
 			    FB.getLoginStatus(function(response) {
 			        if (response.status === 'connected') {
 			        	//show the main content
-			        	$('main').show();
+			        	$('#main').show();
 			            //display user data
 			        } else{
 			            window.location.replace('index.html');
@@ -58,7 +58,7 @@
 		        </hgroup>
 			</div>
 		</header>
-		<main class="container">
+		<main class="container" id="main">
 			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default" id="aqSearch">

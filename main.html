@@ -1,188 +1,103 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Page 2 pollution app</title>
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<!--Linked css-->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Page 2 pollution app</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--Linked css-->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
 
-<body>		
+	<body>		
 
-
-
-	<div class="container">
-
-
-
-		  
-		  <!-- Wrapper for slides -->
-		 <div class="carousel-inner">
-		    <div class="item slides active">
-		      <div class="hero">
-		        <hgroup class="headerCss">
-		            <h1 >MEGA</h1>        
+		<header class="container">
+			<div class="row">
+				<hgroup class="headerCss text-center">
+		            <h1>MEGA</h1>        
 		            <h3>Make America Great Again</h3>
 		        </hgroup>
-		      
-		      </div>
-		    </div>
-		   
-		 </div>
-
-		
-
-		<div class="row">
-
-			<div class="col-md-2">
 			</div>
-
-			
-
-			<div class="col-md-8">
-				
-				<div class="panel panel-default" id="aqPanel">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">Air Quality</h3>
-				  </div>
-				  <div class="panel-body">
-				  <!--Put the search bar, map, aq in (city), its safe/not safe bar, recommendation area in this Div-->
-
-					<div id="imaginary_container"> 
-		                <div class="input-group stylish-input-group">
-		                    <input style="width: 500px" type="text" class="form-control" id="location" placeholder="Location (Address, city Place or zip code)" >
-		                </div>
-		            </div>
-
-		            
-
-		            <div id="googleMap" style="width:500px;height:400px;">
-		            <!--google map goes here-->
-		            </div>
-		            <div id="infowindow-content">
-					    <span id="aqiValue"></span><br>
-					    <span id="aqiDescription"></span>
+		</header>
+		<main class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default" id="aqSearch">
+					  	<div class="panel-heading">
+					    	<h3 class="panel-title">Search</h3>
+					  	</div>
+					  	<div class="panel-body">
+							<div class="form-group">
+	    						<label for="location">Enter the location</label>
+	    						<input type="text" class="form-control" id="location" placeholder="Location (Address, city Place or zip code)">
+	  						</div>
+							
+							<div id="map">
+								<div id="googleMap">
+				            	<!--google map goes here-->
+				            	</div>
+				            </div>
+				            <div id="infowindow-content">
+							    <span id="aqiValue"></span><br>
+							    <span id="aqiDescription"></span>
+							</div>
+						</div>
 					</div>
-					
-					<!-- <div  style="width:150px;height:150px;">
-
-		            	<img class="aqIndexpic" src="http://charmeck.org/mecklenburg/county/LUESA/SOER/PublishingImages/aqcolorcode.jpg">
-
-		            </div> -->
-
-					<div id="aq-info"></div> 
-
-
-					<div class="panel panel-default">
-					  <div class="panel-body"><span id="aqSafeStatus"><!--If the AQ is safe or not/ changes color of box accordingly--></span></div>
-					</div>
-
-					<br>
-
-					<div class="panel panel-default">
-					  <div class="panel-body"> Recommendations:<span id="aqRecommendation"><!--Recommendations according to AQ level--></span></div>
-					</div>
-
-
-				   
-
-				  </div>
 				</div>
 
+				<div class="col-md-6">
+					<div class="panel panel-default" id="aqResults">
+						<div class="panel-heading">
+					    	<h3 class="panel-title">Air quality Results</h3>
+					  	</div>
+					  	<div class="panel-body">
+							<div id="aq-info"></div>
+
+					  		<div id="aqRecommendation"></div>
+					  	</div>
+					</div>
+				</div>
 			</div>
 
-			<div class="col-md-2">
-			</div>
-
-		</div>
-
-<!--Row will have the representative info-->
-		<div class="row">
-			
-			<div class="col-md-2">
-			</div>
-
-			<div class="col-md-8">
-
-				<div class="panel panel-default" id="aqPanel">
-
-				  <div class="panel-heading">
-
-				    <h3 class="panel-title">Air Quality</h3>
-				  </div>
-
-				 	<div class="panel-body">
-				  <!--Put the search bar, map, aq in (city), its safe/not safe bar, recommendation area in this Div-->
-
-						<div id="imaginary_container"> 
-
-					<!--Tweet your representative the results, rep 1 (info and twitter) and rep 2 (info and twitter)-->
-
-
-
-							<div class="col-sm-6" >
-								<!--Rep 1 info-->
-								
-
-								<div class="panel panel-default">
-								  <div class="panel-heading"><h4><span id="repName"><!--Rep 1 name --></span></h4></div>
-								  <div class="panel-body">
-								  	<ul>
-								  		<li><span id="repPhone"><!--Reps phone number--></span></li>
-								  		<li><span id="repAddress"><!--Reps Address--></span></li>
-								  	</ul>
-
-								  	<!-- This is the twitter button that links to your rep-->
-                                    <a href="https://twitter.com/share" class="twitter-share-button" id= 'twitter-button' data-size="large" data-show-count="false">Tweet</a>
-								  </div>
-								</div>
-
-
-							</div>
-
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
 							
-							<div class="col-sm-6" >
-								<!--Rep 2 info-->
-								
-
-								<div class="panel panel-default">
-								  <div class="panel-heading"><h4><span id="repName"><!--Rep 2 name --></span></h4></div>
-								  <div class="panel-body">
-								  	<ul>
-								  		<li><span id="repPhone"><!--Reps phone number--></span></li>
-								  		<li><span id="repAddress"><!--Reps Address--></span></li>
-								  	</ul>
-
-                                    <!-- This is the twitter button that links to your rep-->
-                                    <a href="https://twitter.com/share" class="twitter-share-button" id= 'twitter-button' data-size="large" data-show-count="false">Tweet</a>
-
-								  </div>
-								</div>
-
-
+						</div>
+						<div class="panel-body">
+							<div id="first-senator">
 							</div>
+							<!-- This is the twitter button that links to your rep-->
+                            <a href="https://twitter.com/share" class="twitter-share-button" id= 'twitter-button' data-size="large" data-show-count="false">Tweet</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							
+						</div>
+						<div class="panel-body">
+							<div id="second-senator">
+							</div>
+
+                            <!-- This is the twitter button that links to your rep-->
+                            <a href="https://twitter.com/share" class="twitter-share-button" id= 'twitter-button' data-size="large" data-show-count="false">Tweet</a>
 
 						</div>
 					</div>
-
 				</div>
-
 			</div>
-
-			<div class="col-md-2">
-			</div>	
-		</div>
-
-	</div>
+		</main>
+		
 
         <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="assets/javascript/app.js"></script>
 	 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6R_0L7SvaobkXfIexVQwm4sE6JUKfqZI&libraries=places&callback=initAutocomplete"
         async defer></script>
-</body>
+	</body>
 </html>

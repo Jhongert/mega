@@ -210,7 +210,7 @@ $(document).ready(function(){
                 //display user data
                 getUserName();
             } else {
-                window.location.replace(index.html);
+                window.location.replace('index.html');
             }
         });
     };

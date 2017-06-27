@@ -32,7 +32,7 @@ function fbLogin() {
     FB.login(function (response) {
         if (response.authResponse) {
             // Open main.html
-            alert("in");
+           
             window.location.replace('main.html');
         } else {
             return;
@@ -63,7 +63,7 @@ function fbLogout() {
 
 $(document).ready(function(){
     $('#fbLink').click(function(){
-        //fbLogin();
-        window.location.replace('main.html');
+        fbLogin();
+        //window.location.replace('main.html');
     })
 })

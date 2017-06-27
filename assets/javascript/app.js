@@ -208,6 +208,7 @@ $(document).ready(function(){
             if (response.status === 'connected') {
                 document.getElementById('main').style.display = 'block';
                 document.getElementById('logout').style.display = 'inline';
+                initAutocomplete();
                 //display user data
                 getFBUserData();
             } else {

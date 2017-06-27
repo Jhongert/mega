@@ -189,7 +189,6 @@
 			    
 			    // Check whether the user already logged in
 			    FB.getLoginStatus(function(response) {
-			    	console.log(response);
 			        if (response.status === 'connected') {
 			        	document.getElementById('main').style.display = 'block';
 			            //display user data

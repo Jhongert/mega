@@ -208,7 +208,7 @@ $(document).ready(function(){
                 document.getElementById('main').style.display = 'block';
                 document.getElementById('logout').style.display = 'inline';
                 //display user data
-                getFBUserName();
+                getFBUserData();
             } else {
                 window.location.replace('index.html');
             }

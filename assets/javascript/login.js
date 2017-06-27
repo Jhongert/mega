@@ -30,10 +30,10 @@ window.fbAsyncInit = function() {
 function fbLogin() {
     FB.login(function (response) {
         if (response.authResponse) {
-            // Get and display the user profile data
-            getFbUserData();
+            // Open main.html
+            window.location.replace('main.html');
         } else {
-            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+            return;
         }
     }, {scope: 'email'});
 }
@@ -61,6 +61,7 @@ function fbLogout() {
 
 $(document).ready(function(){
     $('#fbLink').click(function(){
-        fbLogin();
+        //fbLogin();
+        window.location.replace('main.html');
     })
 })

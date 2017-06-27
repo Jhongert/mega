@@ -1,6 +1,6 @@
 
 	var autocomplete;
-	var place = {}, lat, lng;
+	var place = {}, lat, lng, aqi;
     var map, infowindow, marker, infowindowContent;
 
     function getState(array){
@@ -90,7 +90,7 @@
             url: queryURL, 
             method: 'GET',
         }).done(function(response) {
-            var aqi = response.breezometer_aqi;
+             aqi = response.breezometer_aqi;
             var color = response.breezometer_color;
             var description = response.breezometer_description;
             var recoChildren = response.random_recommendations.children;
@@ -160,7 +160,7 @@
                 a.text(result.url).attr({href: result.url, target: "_blank"});
                 p.append(a);
                 firstSenator.append(p);
-
+                $('#twitter-button1').attr('data-via', result.twitter_account);
             });
 
             $.ajax({
@@ -180,6 +180,7 @@
                 a.text(result.url).attr({href: result.url, target: "_blank"});
                 p.append(a);
                 secondSenator.append(p);
+                $('#twitter-button2').attr('data-via', result.twitter_account);
             });
         });
     }
@@ -226,13 +227,9 @@ $(document).ready(function(){
     }(document, 'script', 'facebook-jssdk'));
 
     //twitter
-    $('#twitterButton').on('click', function (){
+    $('#twitter-button').on('click', function (){
         var text = "Our air qaulity index is" +aqi+ "this is terrible";
-        var twitterName;
-        var hashtags = "magaPolution, fixItNow";
         $(this).attr('data-text', text);
-        $(this).attr('data-via', twitterName);
-        $(this).attr('data-hashtags', hashtags);
     });
 
     $("#cur-location").on('click', function(event){

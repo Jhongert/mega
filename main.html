@@ -29,11 +29,26 @@
 					  	</div>
 					  	<div class="panel-body">
 							<div class="form-group">
-	    						<label for="location">Enter the location</label>
-	    						<input type="text" class="form-control" id="location" placeholder="Location (Address, city Place or zip code)">
+	    						<label for="location">Enter a location</label>
+	    						<a href="#" id="cur-location">Use my current location</a>
+	    						<input type="text" class="form-control" id="location" placeholder="Location (Address, City, Place or Zip code)">
 	  						</div>
 							
-							<div id="map">
+							<div id="aq-info"></div>
+
+					  		<div id="aqRecommendation"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="panel panel-default" id="aqResults">
+						<div class="panel-heading">
+					    	<h3 class="panel-title">Map</h3>
+					  	</div>
+
+					  	<div class="panel-body">
+					  		<div id="map">
 								<div id="googleMap">
 				            	<!--google map goes here-->
 				            	</div>
@@ -42,19 +57,8 @@
 							    <span id="aqiValue"></span><br>
 							    <span id="aqiDescription"></span>
 							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="col-md-6">
-					<div class="panel panel-default" id="aqResults">
-						<div class="panel-heading">
-					    	<h3 class="panel-title">Air quality Results</h3>
-					  	</div>
-					  	<div class="panel-body">
-							<div id="aq-info"></div>
-
-					  		<div id="aqRecommendation"></div>
+							
 					  	</div>
 					</div>
 				</div>

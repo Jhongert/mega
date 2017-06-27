@@ -11,6 +11,7 @@ window.fbAsyncInit = function() {
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
+            console.log("in main " + response.status);
             //display user data
             getFbUserData();
         }

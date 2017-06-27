@@ -13,7 +13,7 @@
     }
 
 	function initAutocomplete() {
-        // Create the map
+            // Create the map
         map = new google.maps.Map(document.getElementById('googleMap'),{
             center: {lat: 37.1, lng: -95.7},
             zoom: 3,

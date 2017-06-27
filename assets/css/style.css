@@ -21,5 +21,49 @@ header {
 }
 		
 #cur-location {
-  float: right;;
+    float: right;;
 }
+
+td:nth-child(even) {
+    padding-left: 8px;
+}
+
+#aqi-concern {
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+#aq-concern tr{
+    margin-top: 8px;
+}
+
+.aqi-green {
+    background-color: #00E400;
+}
+
+.aqi-yellow {
+    background-color: #FFFF00;
+}
+
+.aqi-orange {
+    background-color: #FF7E00;
+    color: #fff;
+}
+.aqi-red {
+    background-color: #FF0000;
+    color: #fff;
+}
+.aqi-purple {
+    background-color: #8f3f97;
+    color: #fff;
+}
+.aqi-maroon {
+    background-color: #7E0023;
+    color: #fff;
+}
+
+#aqRecommendation {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+}
+

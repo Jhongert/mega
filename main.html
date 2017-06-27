@@ -22,7 +22,7 @@
 		</header>
 		<main class="container">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<div class="panel panel-default" id="aqSearch">
 					  	<div class="panel-heading">
 					    	<h3 class="panel-title">Search</h3>
@@ -34,14 +34,90 @@
 	    						<input type="text" class="form-control" id="location" placeholder="Location (Address, City, Place or Zip code)">
 	  						</div>
 							
-							<div id="aq-info"></div>
+							<div class="row">
+								<div class="col-sm-12">
+									<table>
+										<tbody>
+											<tr>
+												<td>AQI: </td>
+												<td id="aqi"></td>
+											</tr>
+											<tr>
+												<td>Air: </td>
+												<td id="air"></td>
+											</tr>
+											<tr>
+												<td>Carbon dioxide: </td>
+												<td id="co"></td>
+											</tr>
+											<tr>
+												<td>Nitrogen dioxide: </td>
+												<td id="no2"></td>
+											</tr>
+											<tr>
+												<td>Ozone: </td>
+												<td id="ozone"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<table id="aqi-concern" class="table  table-bordered">
+							          	<thead >
+							          		<th class="text-center">Levels of Health Concern</th>
+							                <!-- <th> Numerical Value</th> -->
+							                <th class="text-center">Meaning</th>
+							          	</thead>
+							          	<tbody>
+							            
+							            
+							            <tr class="aqi-green">
+							              <td class="text-center">Good</td>
+							             <!--  <td >0 to 50</td> -->
+							              <td>(0-50) Air quality is considered satisfactory, and air pollution poses little or no risk.</td>
+							            </tr>
+							            
+							            <tr class="aqi-yellow">
+							              <td class="text-center">Moderate</td>
+							              <td>(51-100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
+							            </tr>
+							            
+							            <tr class="aqi-orange">
+							              <td class="text-center">Unhealthy for Sensitive Groups</td>
+							              <td>(101-150) Members of sensitive groups may experience health effects. The general public is not likely to be affected. </td>
+							            </tr>
+							            
+							            <tr class="aqi-red">
+							              <td class="text-center">Unhealthy</td>
+							              <td>(151-200) Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
+							            </tr>
+							            
+							            <tr class="aqi-purple">
+							              <td class="text-center">Very Unhealthy </td>
+							              <td>(201-300) Health alert: everyone may experience more serious health effects.</td>
+							            </tr>
+							            
+							            <tr  class="aqi-maroon">
+							              <td class="text-center">Hazardous</td>
+							              <td>(301-500) Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
+							            </tr>
+							            
+							          </tbody>
+							        </table>
+								</div>
+							</div>
+							
 
-					  		<div id="aqRecommendation"></div>
+					  		<div id="aqRecommendation">
+					  			<h3>Recommendations</h3>
+					  		</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default" id="aqResults">
 						<div class="panel-heading">
 					    	<h3 class="panel-title">Map</h3>

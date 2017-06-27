@@ -64,7 +64,7 @@
                 map.fitBounds(place.geometry.viewport);
             }else{
                 map.setCenter(place.geometry.location);
-                map.setZoom(17);
+                map.setZoom(8);
             }
 
             marker.setPosition(place.geometry.location);
@@ -106,39 +106,28 @@
             var o3 = response.pollutants.o3.concentration;
             var o3Desc = response.pollutants.o3.pollutant_description;
 
-            var aqInfo = $("#aq-info");
+            $('#aqi').text(aqi);
+            $('#air').text(description);
+            $('#co').text(co);
+            $('#no2').text(no2);
+            $('#ozone').text(o3);
 
-            var p = $("<p>").text("AQI: " + aqi);
-            aqInfo.append(p);
-
-            p = $("<p>").text("Description: " + description);
-            aqInfo.append(p);
-
-            p = $("<p>").text(coDesc + ": " + co);
-            aqInfo.append(p);
-
-            p = $("<p>").text(no2Desc + ": " + no2);
-            aqInfo.append(p);
-            
-             p = $("<p>").text(o3Desc + ": " + o3);
-            aqInfo.append(p);
-
-            console.log("Color: " + color);
+            //console.log("Color: " + color);
            
             var aqRecommendation = $("#aqRecommendation");
-            p = $("<p>").text("Children: " + recoChildren);
+            p = $("<p>").html("<strong>Children: </strong>" + recoChildren);
             aqRecommendation.append(p);
 
-            p = $("<p>").text("Health: " + recoHealth);
+            p = $("<p>").html("<strong>Health: </strong>" + recoHealth);
             aqRecommendation.append(p);
 
-            p = $("<p>").text("Inside: " + recInside);
+            p = $("<p>").html("<strong>Inside: </strong>" + recInside);
             aqRecommendation.append(p);
             
-            p = $("<p>").text("Outside: " + recOutside);
+            p = $("<p>").html("<strong>Outside: </strong>" + recOutside);
             aqRecommendation.append(p);
             
-            p = $("<p>").text("Sport: " + recSport);
+            p = $("<p>").html("<strong>Sport: </strong>" + recSport);
             aqRecommendation.append(p);
 
 

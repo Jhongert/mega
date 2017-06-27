@@ -20,3 +20,6 @@ header {
     position: relative;
 }
 		
+#cur-location {
+  float: right;;
+}

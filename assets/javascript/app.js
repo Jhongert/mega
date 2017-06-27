@@ -206,6 +206,16 @@ $(document).ready(function(){
         $(this).attr('data-via', twitterName);
         $(this).attr('data-hashtags', hashtags);
     });
+
+    $("#cur-location").on('click', function(event){
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(function(result){
+            getBOM(result.coords.latitude, result.coords.longitude);
+            getProPublica(state);
+            map.setCenter(result.coords.latitude, result.coords.longitude);
+            map.setZoom(17);
+        });
+    })
 })
 
 

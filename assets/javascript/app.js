@@ -154,16 +154,13 @@
             dataType: 'json',
             headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
         }).done(function(data){
-            var firstSenator = $("#first-senator");
-            var p = $("<p>").text("Name: " + data.results[0].name);
-            firstSenator.append(p);
+            var senators = $("#senators");
+            var p = $("<p>").text(data.results[0].name + " | " + data.results[1].name);
+            senators.html(p);
             
             senatorOne = data.results[0].twitter_id;
-            var secondSenator = $("#second-senator");
-            var p = $("<p>").text("Name: " + data.results[1].name);
-            secondSenator.append(p);
-            
             senatorTwo = data.results[1].twitter_id;
+
             var senators = senatorTwo +" @" + senatorOne;
             var link = document.createElement('a');
             link.setAttribute('href', 'https://twitter.com/share');
@@ -175,6 +172,8 @@
             link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
             $('#twitterB').html(link);
             twttr.widgets.load();  //very important
+
+            $('#senators-panel').show();
         });
     }
 

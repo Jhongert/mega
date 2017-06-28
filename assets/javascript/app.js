@@ -2,6 +2,7 @@
 	var autocomplete;
 	var place = {}, lat, lng, aqi;
     var map, infowindow, marker, infowindowContent;
+    
 
     function getState(array){
         for (var i = 0; i < array.length; i++) {
@@ -138,6 +139,9 @@
     };
 
     function getProPublica(state){
+        var senatorOne;
+        var senatorTwo;
+        
         $.ajax({
             url: "https://api.propublica.org/congress/v1/members/senate/" + state + "/current.json",
             type: "GET",
@@ -160,7 +164,23 @@
                 a.text(result.url).attr({href: result.url, target: "_blank"});
                 p.append(a);
                 firstSenator.append(p);
-                $('#twitter-button1').attr('data-via', result.twitter_account);
+                
+                senatorOne = result.twitter_account;
+                var senators = senatorTwo +" @" + senatorOne;
+                var link = document.createElement('a');
+                link.setAttribute('href', 'https://twitter.com/share');
+                link.setAttribute('class', 'twitter-share-button');
+                link.setAttribute('style', 'margin-top:5px;');
+                link.setAttribute('data-via', senators);
+
+                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
+                link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
+                link.setAttribute("data-size" ,"large") ;
+                $('#twitterB').html(link);
+                twttr.widgets.load();  //very important
+                
+                
+                
             });
 
             $.ajax({
@@ -180,8 +200,22 @@
                 a.text(result.url).attr({href: result.url, target: "_blank"});
                 p.append(a);
                 secondSenator.append(p);
-                $('#twitter-button2').attr('data-via', result.twitter_account);
+                alert(senatorOne);
+                senatorTwo = result.twitter_account;
+                var senators = senatorTwo +" @" + senatorOne;
+                var link = document.createElement('a');
+                link.setAttribute('href', 'https://twitter.com/share');
+                link.setAttribute('class', 'twitter-share-button');
+                link.setAttribute('style', 'margin-top:5px;');
+                link.setAttribute('data-via', senators);
+
+                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
+                link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
+                $('#twitterB').html(link);
+                twttr.widgets.load();  //very important
+               
             });
+            
         });
     }
 
@@ -227,11 +261,17 @@ $(document).ready(function(){
     }(document, 'script', 'facebook-jssdk'));
 
     //twitter
-    $('.twitter-share-button').on('click', function (){
-        var text = "Our air qaulity index is" +aqi+ "this is terrible";
-        $(this).attr('data-text', text);
-    });
-
+//    $('#b').on('click', function (e){
+//        
+//        e.preventDefault();
+//        var text = "Our air qaulity index is" +aqi+ "this is terrible";
+//        $(this).attr('data-text', text);
+//        alert("it works");
+//        console.log("it works");
+//    });
+    
+    
+    
     $("#cur-location").on('click', function(event){
         event.preventDefault();
         navigator.geolocation.getCurrentPosition(function(result){

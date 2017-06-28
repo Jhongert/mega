@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Page 2 pollution app</title>
+		<title>Mega - Make Earth Great Again</title>
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!--Linked css-->
@@ -26,7 +26,7 @@
 				<hgroup class="headerCss text-center">
 					<span id="welcome"></span><a href="#" id="logout">Logout from facebook</a>
 		            <h1>MEGA</h1>        
-		            <h3>Make America Great Again</h3>
+		            <h3>Make Earth Great Again</h3>
 		        </hgroup>
 			</div>
 		</header>
@@ -44,11 +44,14 @@
 	    						<input type="text" class="form-control" id="location" placeholder="Location (Address, City, Place or Zip code)">
 	  						</div>
 							
-							<div class="row" id="aqi-info">
+							<div class="row">
 								<div class="col-sm-12">
+
 									<table>
                                         <h3>What is AQI?</h3>
-                                            <p>Air quality index (AQI) measures your daily air quality letting you know how clean or polluted your air is. 0 means you’re breathing the air of angels and 500 means kiss your health goodbye.  </p>
+
+									<table id="aqi-info">
+
 										<tbody>
 											<tr>
 												<td>AQI: </td>
@@ -72,6 +75,10 @@
 											</tr>
 										</tbody>
 									</table>
+
+									<div id="aqRecommendation">
+					  					<h3>Recommendations</h3>
+					  				</div>
 								</div>
 							</div>
 							<div class="row">
@@ -92,7 +99,7 @@
 							            </tr>
 							            
 							            <tr class="aqi-yellow">
-							              <td class="text-center">Moderate</td>
+							              <td class="text-center">Fair air quality</td>
 							              <td>(51-100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
 							            </tr>
 							            
@@ -118,18 +125,27 @@
 							            
 							          </tbody>
 							        </table>
+
+							        <div class="panel panel-default" id="senators-panel">
+										<div class="panel-heading">
+											<h3 class="panel-title">Tweet senators</h3>
+										</div>
+										<div class="panel-body">
+											<div id="senators">
+				                            </div>
+				                            <div id="twitterB">
+				                            </div>
+										</div>
+									</div>
+
 								</div>
 							</div>
-							
-
-					  		<div id="aqRecommendation">
-					  			<h3>Recommendations</h3>
-					  		</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-4">
+					<!-- Map panel-->
 					<div class="panel panel-default" id="aqResults">
 						<div class="panel-heading">
 					    	<h3 class="panel-title">Map</h3>
@@ -145,10 +161,9 @@
 							    <span id="aqiValue"></span><br>
 							    <span id="aqiDescription"></span>
 							</div>
-
-							
 					  	</div>
 					</div>
+
 				</div>
 			</div>
 
@@ -182,23 +197,17 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3>Senator</h3>
-						</div>
-						<div class="panel-body">
-							<div id="second-senator">
-							</div>
-						</div>
-					</div>
-				</div>
-                <div class="col-md-6">
+
+					<!-- Weather panel -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							
+						    <h3 class="panel-title">Local Weather</h3>
+
 						</div>
-						<div class="panel-body">
-							<div id="twitterB">
-                            </div>
+						<div class="panel-body" id="weather">
+							<p class="text-center">No data available for current location</p>
 						</div>
-					</div>
+	                </div>
 				</div>
 			</div>
 		</main>

@@ -2,15 +2,20 @@
 	var autocomplete;
 	var place = {}, lat, lng, aqi;
     var map, infowindow, marker, infowindowContent;
+    var city, state;
     
-
-    function getState(array){
+    //get city and state from address
+    function getLocalidad(array){
+        var localidad = {};
         for (var i = 0; i < array.length; i++) {
+            if (array[i].types[0] === 'locality') {
+                localidad.city = array[i].short_name;
+            }
             if (array[i].types[0] === "administrative_area_level_1") {
-                var state = array[i].short_name;
-                return state;
+                localidad.state = array[i].short_name;
             }
         }
+        return localidad;
     }
 
 	function initAutocomplete() {
@@ -75,10 +80,11 @@
             lng = place.geometry.location.lng();
             
             //Get the state from the location
-            var state = getState(place.address_components);
+            var localidad = getLocalidad(place.address_components);
 
             getBOM(lat, lng);
-            getProPublica(state);      
+            getProPublica(localidad.state);  
+            getWeatherInfo(localidad.city);   
         });
     }
 
@@ -91,7 +97,7 @@
             url: queryURL, 
             method: 'GET',
         }).done(function(response) {
-             aqi = response.breezometer_aqi;
+            aqi = response.breezometer_aqi;
             var color = response.breezometer_color;
             var description = response.breezometer_description;
             var recoChildren = response.random_recommendations.children;
@@ -112,10 +118,12 @@
             $('#co').text(co);
             $('#no2').text(no2);
             $('#ozone').text(o3);
-
-            //console.log("Color: " + color);
-           
+            $('#aqi-info').show();
+                      
             var aqRecommendation = $("#aqRecommendation");
+            aqRecommendation.empty();
+            
+            aqRecommendation.show();
             p = $("<p>").html("<strong>Children: </strong>" + recoChildren);
             aqRecommendation.append(p);
 
@@ -131,9 +139,7 @@
             p = $("<p>").html("<strong>Sport: </strong>" + recSport);
             aqRecommendation.append(p);
 
-
             infowindowContent.children['aqiValue'].textContent = "AQI: " + aqi;
-            infowindowContent.children['aqiDescription'].textContent = description;
             infowindow.open(map, marker);
         });
     };
@@ -148,6 +154,7 @@
             dataType: 'json',
             headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
         }).done(function(data){
+
             $.ajax({
                 url: data.results[0].api_uri,
                 type: "GET",
@@ -215,7 +222,28 @@
                 twttr.widgets.load();  //very important
                
             });
+
+            var senators = $("#senators");
+            var p = $("<p>").text(data.results[0].name + " | " + data.results[1].name);
+            senators.html(p);
+
             
+            senatorOne = data.results[0].twitter_id;
+            senatorTwo = data.results[1].twitter_id;
+
+            var senators = senatorTwo +" @" + senatorOne;
+            var link = document.createElement('a');
+            link.setAttribute('href', 'https://twitter.com/share');
+            link.setAttribute('class', 'twitter-share-button');
+            link.setAttribute('style', 'margin-top:5px;');
+            link.setAttribute('data-via', senators);
+
+            link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
+            link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
+            $('#twitterB').html(link);
+            twttr.widgets.load();  //very important
+
+            $('#senators-panel').show();
         });
     }
 
@@ -224,8 +252,47 @@
         FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email'},
         function (response) {
             document.getElementById('welcome').innerHTML = 'Welcome, ' + response.first_name+' '+response.last_name;
-            document.getElementById('welcome').style.display = 'inline';
+            //document.getElementById('welcome').style.display = 'inline';
         });
+    }
+
+    function getWeatherInfo (city){
+        if(city){
+            var weatherApiKey = "db47186cb076286534ca88481910d2ef";
+            $('#weather').html($('<h2 id="weather-city">').html(city));
+
+            $.ajax({
+                url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
+                type: "GET",
+                dataType :'JSON'
+
+            }).done(function(response) {
+                $('#weather').append($('<h1 id="temp">').html(Math.round(response.main.temp) + '&#8457;'));
+
+                var table = $('<table class="table">');
+                var tbody = $('<tbody>');
+                var tr = $('<tr>');
+
+                tr.append('<td>Wind Speed</td>');
+                tr.append('<td>' + response.wind.speed + ' mph</td>');
+                tbody.append(tr);
+
+                tr = $('<tr>');
+                tr.append('<td>Humidity</td>');
+                tr.append('<td>' + response.main.humidity + ' %</td>');
+                tbody.append(tr);
+
+                tr = $('<tr>');
+                tr.append('<td>Current Weather</td>');
+                tr.append('<td>' + response.weather[0].description + '</td>');
+                tbody.append(tr);
+                
+                table.append(tbody);
+                $('#weather').append(table);
+            });
+        } else {
+            $('#weather').html('<p class="text-center">No data available for current location</p>')
+        }
     }
 
 $(document).ready(function(){
@@ -259,26 +326,22 @@ $(document).ready(function(){
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-    //twitter
-//    $('#b').on('click', function (e){
-//        
-//        e.preventDefault();
-//        var text = "Our air qaulity index is" +aqi+ "this is terrible";
-//        $(this).attr('data-text', text);
-//        alert("it works");
-//        console.log("it works");
-//    });
-    
     
     
     $("#cur-location").on('click', function(event){
         event.preventDefault();
         navigator.geolocation.getCurrentPosition(function(result){
-            getBOM(result.coords.latitude, result.coords.longitude);
-            getProPublica(state);
-            map.setCenter(result.coords.latitude, result.coords.longitude);
-            map.setZoom(17);
+            var geocoder = new google.maps.Geocoder;
+            var latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
+            geocoder.geocode({'location': latlng}, function(response){
+                city = response[0].address_components[2].short_name;
+                state = response[0].address_components[4].short_name;
+                getBOM(result.coords.latitude, result.coords.longitude);
+                getProPublica(state);
+                getWeatherInfo(city); 
+                map.setCenter(latlng);
+                map.setZoom(8);
+            });  
         });
     });
 
@@ -287,10 +350,6 @@ $(document).ready(function(){
         FB.logout(function() {
             window.location.replace('index.html');
         });
-
     });
     
 })
-
-
-

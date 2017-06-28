@@ -1,7 +1,7 @@
 
 body {
 	/*css for full size background image*/
-  	background: url(https://www.ecologiaverde.com/wp-content/2016/02/mundo-mano.jpg) no-repeat center center fixed; 
+  	background: url(https://daywallpaper.files.wordpress.com/2013/08/sunset-landscape-tree-on-a-hill.jpg) no-repeat center center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
  	 -o-background-size: cover;
@@ -72,15 +72,41 @@ td:nth-child(even) {
     color: #fff;
 }
 
+#aqi-info {
+    display: none;
+}
+
 #aqRecommendation {
     margin-top: 20px;
     border-top: 1px solid #eee;
+    display: none;
 }
 
 .text-danger{
     color:s;
 }
 
+
 p , h2, h3 {
     text-align: center;
+
+/* Senators panel*/
+#senators-panel {
+    display: none;
+}
+
+/* Weather panel*/
+#weather p {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+}
+
+#weather-city {
+    margin-top: 0;
+}
+
+#temp {
+    text-align: center;
+    font-size: 70px;
+
 }

@@ -85,3 +85,18 @@ td:nth-child(even) {
 .text-danger{
     color:s;
 }
+
+/* Weather panel*/
+#weather p {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+}
+
+#weather-city {
+    margin-top: 0;
+}
+
+#temp {
+    text-align: center;
+    font-size: 70px;
+}

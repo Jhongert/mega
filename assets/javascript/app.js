@@ -121,6 +121,8 @@
             $('#aqi-info').show();
                       
             var aqRecommendation = $("#aqRecommendation");
+            aqRecommendation.empty();
+            
             aqRecommendation.show();
             p = $("<p>").html("<strong>Children: </strong>" + recoChildren);
             aqRecommendation.append(p);
@@ -186,21 +188,42 @@
     }
 
     function getWeatherInfo (city){
-        var weatherApiKey = "db47186cb076286534ca88481910d2ef";
-        $("#cityName").html(city);
+        if(city){
+            var weatherApiKey = "db47186cb076286534ca88481910d2ef";
+            $('#weather').html($('<h2 id="weather-city">').html(city));
 
-        $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
-            type: "GET",
-            dataType :'JSON'
+            $.ajax({
+                url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
+                type: "GET",
+                dataType :'JSON'
 
-        }).done(function(response) {
-            $("#wind").html("Wind Speed: " + response.wind.speed +" mph");
-            $("#temp").html("Temperature: " + response.main.temp + '&#8457;') ;
-            $("#humidity").html("Humidity: " + response.main.humidity + "%");
-            $("#description").html("Current Weather: " + response.weather[0].description);
-           
-        })
+            }).done(function(response) {
+                $('#weather').append($('<h1 id="temp">').html(Math.round(response.main.temp) + '&#8457;'));
+
+                var table = $('<table class="table">');
+                var tbody = $('<tbody>');
+                var tr = $('<tr>');
+
+                tr.append('<td>Wind Speed</td>');
+                tr.append('<td>' + response.wind.speed + ' mph</td>');
+                tbody.append(tr);
+
+                tr = $('<tr>');
+                tr.append('<td>Humidity</td>');
+                tr.append('<td>' + response.main.humidity + ' %</td>');
+                tbody.append(tr);
+
+                tr = $('<tr>');
+                tr.append('<td>Current Weather</td>');
+                tr.append('<td>' + response.weather[0].description + '</td>');
+                tbody.append(tr);
+                
+                table.append(tbody);
+                $('#weather').append(table);
+            });
+        } else {
+            $('#weather').html('<p class="text-center">No data available for current location</p>')
+        }
     }
 
 $(document).ready(function(){

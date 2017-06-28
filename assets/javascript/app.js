@@ -2,15 +2,22 @@
 	var autocomplete;
 	var place = {}, lat, lng, aqi;
     var map, infowindow, marker, infowindowContent;
+    var city, state;
     
-
-    function getState(array){
+    //get city and state from address
+    function getLocalidad(array){
+        console.log(array);
+        var localidad = {};
         for (var i = 0; i < array.length; i++) {
+            if (array[i].types[0] === 'locality') {
+                localidad.city = array[i].short_name;
+            }
             if (array[i].types[0] === "administrative_area_level_1") {
-                var state = array[i].short_name;
-                return state;
+                localidad.state = array[i].short_name;
             }
         }
+        console.log(localidad);
+        return localidad;
     }
 
 	function initAutocomplete() {
@@ -75,10 +82,12 @@
             lng = place.geometry.location.lng();
             
             //Get the state from the location
-            var state = getState(place.address_components);
+            var localidad = getLocalidad(place.address_components);
 
             getBOM(lat, lng);
-            getProPublica(state);      
+            getProPublica(localidad.state);  
+            getWeatherInfo(localidad.city); 
+            console.log(localidad.city , + "  " + localidad.state);   
         });
     }
 
@@ -91,7 +100,7 @@
             url: queryURL, 
             method: 'GET',
         }).done(function(response) {
-             aqi = response.breezometer_aqi;
+            aqi = response.breezometer_aqi;
             var color = response.breezometer_color;
             var description = response.breezometer_description;
             var recoChildren = response.random_recommendations.children;
@@ -112,10 +121,10 @@
             $('#co').text(co);
             $('#no2').text(no2);
             $('#ozone').text(o3);
-
-            //console.log("Color: " + color);
-           
+            $('#aqi-info').show();
+                      
             var aqRecommendation = $("#aqRecommendation");
+            aqRecommendation.show();
             p = $("<p>").html("<strong>Children: </strong>" + recoChildren);
             aqRecommendation.append(p);
 
@@ -131,9 +140,7 @@
             p = $("<p>").html("<strong>Sport: </strong>" + recSport);
             aqRecommendation.append(p);
 
-
             infowindowContent.children['aqiValue'].textContent = "AQI: " + aqi;
-            infowindowContent.children['aqiDescription'].textContent = description;
             infowindow.open(map, marker);
         });
     };
@@ -177,9 +184,7 @@
                 link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
                 link.setAttribute("data-size" ,"large") ;
                 $('#twitterB').html(link);
-                twttr.widgets.load();  //very important
-                
-                
+                twttr.widgets.load();  //very important      
                 
             });
 
@@ -189,7 +194,6 @@
                 dataType: 'json',
                 headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
             }).done(function(data){
-                console.log(data);
                 var result = data.results[0];
                 var secondSenator = $("#second-senator");
                 var p = $("<p>").text("Name: " + result.first_name + " " + result.middle_name + " " +result.last_name);
@@ -200,7 +204,7 @@
                 a.text(result.url).attr({href: result.url, target: "_blank"});
                 p.append(a);
                 secondSenator.append(p);
-                alert(senatorOne);
+                
                 senatorTwo = result.twitter_account;
                 var senators = senatorTwo +" @" + senatorOne;
                 var link = document.createElement('a');
@@ -226,6 +230,24 @@
             document.getElementById('welcome').innerHTML = 'Welcome, ' + response.first_name+' '+response.last_name;
             //document.getElementById('welcome').style.display = 'inline';
         });
+    }
+
+    function getWeatherInfo (city){
+        var weatherApiKey = "db47186cb076286534ca88481910d2ef";
+        $("#cityName").html(city);
+
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
+            type: "GET",
+            dataType :'JSON'
+
+        }).done(function(response) {
+            $("#wind").html("Wind Speed: " + response.wind.speed +" mph");
+            $("#temp").html("Temperature: " + response.main.temp + '&#8457;') ;
+            $("#humidity").html("Humidity: " + response.main.humidity + "%");
+            $("#description").html("Current Weather: " + response.weather[0].description);
+           
+        })
     }
 
 $(document).ready(function(){
@@ -259,26 +281,23 @@ $(document).ready(function(){
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-    //twitter
-//    $('#b').on('click', function (e){
-//        
-//        e.preventDefault();
-//        var text = "Our air qaulity index is" +aqi+ "this is terrible";
-//        $(this).attr('data-text', text);
-//        alert("it works");
-//        console.log("it works");
-//    });
-    
     
     
     $("#cur-location").on('click', function(event){
         event.preventDefault();
         navigator.geolocation.getCurrentPosition(function(result){
-            getBOM(result.coords.latitude, result.coords.longitude);
-            getProPublica(state);
-            map.setCenter(result.coords.latitude, result.coords.longitude);
-            map.setZoom(17);
+            var geocoder = new google.maps.Geocoder;
+            var latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
+            geocoder.geocode({'location': latlng}, function(response){
+                //getState(response);
+                city = response[0].address_components[2].short_name;
+                state = response[0].address_components[4].short_name;
+                getBOM(result.coords.latitude, result.coords.longitude);
+                getProPublica(state);
+                getWeatherInfo(city); 
+                map.setCenter(latlng);
+                map.setZoom(8);
+            });  
         });
     });
 
@@ -287,10 +306,6 @@ $(document).ready(function(){
         FB.logout(function() {
             window.location.replace('index.html');
         });
-
     });
     
 })
-
-
-

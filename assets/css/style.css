@@ -80,3 +80,7 @@ td:nth-child(even) {
 .text-danger{
     color:s;
 }
+
+p , h2, h3 {
+    text-align: center;
+}

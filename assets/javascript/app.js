@@ -173,8 +173,8 @@
                 link.setAttribute('style', 'margin-top:5px;');
                 link.setAttribute('data-via', senators);
 
-                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
-                link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
+                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " how will you improve this?" );
+                link.setAttribute("data-hashtags" , "megaPollution");
                 link.setAttribute("data-size" ,"large") ;
                 $('#twitterB').html(link);
                 twttr.widgets.load();  //very important
@@ -210,7 +210,7 @@
                 link.setAttribute('data-via', senators);
 
                 link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
-                link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
+                link.setAttribute("data-hashtags" , "megaPollution");
                 $('#twitterB').html(link);
                 twttr.widgets.load();  //very important
                

@@ -242,7 +242,6 @@ $(document).ready(function(){
             var geocoder = new google.maps.Geocoder;
             var latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
             geocoder.geocode({'location': latlng}, function(response){
-                //getState(response);
                 city = response[0].address_components[2].short_name;
                 state = response[0].address_components[4].short_name;
                 getBOM(result.coords.latitude, result.coords.longitude);

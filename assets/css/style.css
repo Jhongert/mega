@@ -16,6 +16,16 @@ header {
 	color: #fff;
 }
 
+#logo {
+    float: left;
+    font-size: 60px;
+}
+
+#index-logo {
+    text-align: center;
+    font-size: 60px;
+}
+
 #intro {
     margin-bottom: 20px;
     background-color: #000;
@@ -119,9 +129,4 @@ p, h2, h3 {
 #logout, #welcome {
     float: right;
     margin-top: 20px
-}
-
-#logo {
-    float: left;
-    font-size: 60px;
 }

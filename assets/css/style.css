@@ -115,3 +115,7 @@ p, h2, h3 {
 #loading img {
     width: 100%;
 }
+
+#logout {
+    float: right;
+}

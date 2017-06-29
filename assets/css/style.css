@@ -105,5 +105,13 @@ p, h2, h3 {
 #temp {
     text-align: center;
     font-size: 70px;
+}
+#loading {
+    width:50%;
+    margin: 0 auto;
+    display: none;
+}
 
+#loading img {
+    width: 100%;
 }

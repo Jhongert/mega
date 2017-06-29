@@ -1,8 +1,8 @@
 
 	var autocomplete;
-	var place = {}, lat, lng, aqi;
+	var place = {}, lat, lng, latlng;
     var map, infowindow, marker, infowindowContent;
-    var city, state;
+    var city, state, aqi;
     
     //get city and state from address
     function getLocalidad(array){
@@ -70,7 +70,7 @@
                 map.fitBounds(place.geometry.viewport);
             }else{
                 map.setCenter(place.geometry.location);
-                map.setZoom(8);
+                map.setZoom(14);
             }
 
             marker.setPosition(place.geometry.location);
@@ -271,17 +271,30 @@ $(document).ready(function(){
     
     $("#cur-location").on('click', function(event){
         event.preventDefault();
+        $('#aqi-info').hide();
+        $('#aqRecommendation').hide();
+        $('#loading').show();
+        $('#location').val('');
+
+        
+
         navigator.geolocation.getCurrentPosition(function(result){
+            
             var geocoder = new google.maps.Geocoder;
-            var latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
+            latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
+            
+
             geocoder.geocode({'location': latlng}, function(response){
+               
                 city = response[0].address_components[2].short_name;
                 state = response[0].address_components[4].short_name;
+               
                 getBOM(result.coords.latitude, result.coords.longitude);
                 getProPublica(state);
                 getWeatherInfo(city); 
-                map.setCenter(latlng);
-                map.setZoom(8);
+                marker.setPosition(latlng);
+                map.setZoom(14);
+                $('#loading').hide();
             });  
         });
     });
@@ -293,4 +306,7 @@ $(document).ready(function(){
         });
     });
     
+    $("#share").jsSocials({
+        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "stumbleupon"]
+    });
 })

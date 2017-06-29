@@ -120,3 +120,8 @@ p, h2, h3 {
     float: right;
     margin-top: 20px
 }
+
+#logo {
+    float: left;
+    font-size: 60px;
+}

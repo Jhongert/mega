@@ -137,9 +137,12 @@
             aqRecommendation.empty();
             
             aqRecommendation.show();
+            var h = $('<h3>').html("Recommendations");
+            aqRecommendation.append(h);
+
             p = $("<p>").html("<strong>Children: </strong>" + recoChildren);
             aqRecommendation.append(p);
-
+            
             p = $("<p>").html("<strong>Health: </strong>" + recoHealth);
             aqRecommendation.append(p);
 

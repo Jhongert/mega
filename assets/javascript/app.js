@@ -203,7 +203,7 @@
             $('#weather').html($('<h2 id="weather-city">').html(city));
 
             $.ajax({
-                url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
+                url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
                 type: "GET",
                 dataType :'JSON'
 

@@ -97,9 +97,9 @@
             url: queryURL, 
             method: 'GET',
         }).done(function(response) {
-            aqi = response.breezometer_aqi;
+            aqi = parseInt(response.breezometer_aqi);
             var color = response.breezometer_color;
-            var description = response.breezometer_description;
+           // var description = response.breezometer_description;
             var recoChildren = response.random_recommendations.children;
             var recoHealth = response.random_recommendations.health;
             var recInside = response.random_recommendations.inside;
@@ -113,7 +113,20 @@
             var o3 = response.pollutants.o3.concentration;
             var o3Desc = response.pollutants.o3.pollutant_description;
 
+            var description;
             $('#aqi').text(aqi);
+            if(aqi < 51)
+                description = "Good";
+            else if (aqi < 101)
+                description = "Moderate";
+            else if (aqi < 151)
+                description = "Unhealthy for Sensitive Groups"
+            else if(aqi < 201)
+                description = "Unhealthy"
+            else if(aqi < 301)
+                description = "Very Unhealthy";
+            else description = "Hazardous";
+
             $('#air').text(description);
             $('#co').text(co);
             $('#no2').text(no2);

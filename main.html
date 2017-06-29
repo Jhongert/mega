@@ -47,17 +47,8 @@
 							<div class="row">
 								<div class="col-sm-12">
 
-
                 <h3>What is AQI?</h3>
 									<table id="aqi-info" class="table">
-
-									
-                                        
-
-									
-
-
-
 										<tbody>
 											<tr>
 												<td>AQI: </td>
@@ -96,54 +87,38 @@
 							                <th class="text-center">Meaning</th>
 							          	</thead>
 							          	<tbody>
-							            
-							            
-							            <tr class="aqi-green">
-							              <td class="text-center">Good</td>
-							             <!--  <td >0 to 50</td> -->
-							              <td>(0-50) Air quality is considered satisfactory, and air pollution poses little or no risk.</td>
-							            </tr>
-							            
-							            <tr class="aqi-yellow">
-							              <td class="text-center">Moderate</td>
-							              <td>(51-100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
-							            </tr>
-							            
-							            <tr class="aqi-orange">
-							              <td class="text-center">Unhealthy for Sensitive Groups</td>
-							              <td>(101-150) Members of sensitive groups may experience health effects. The general public is not likely to be affected. </td>
-							            </tr>
-							            
-							            <tr class="aqi-red">
-							              <td class="text-center">Unhealthy</td>
-							              <td>(151-200) Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
-							            </tr>
-							            
-							            <tr class="aqi-purple">
-							              <td class="text-center">Very Unhealthy </td>
-							              <td>(201-300) Health alert: everyone may experience more serious health effects.</td>
-							            </tr>
-							            
-							            <tr  class="aqi-maroon">
-							              <td class="text-center">Hazardous</td>
-							              <td>(301-500) Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
-							            </tr>
-							            
-							          </tbody>
+								            <tr class="aqi-green">
+								               <td class="text-center">Good</td>
+								               <!--  <td >0 to 50</td> -->
+								               <td>(0-50) Air quality is considered satisfactory, and air pollution poses little or no risk.</td>
+								            </tr>
+								            
+								            <tr class="aqi-yellow">
+								               <td class="text-center">Moderate</td>
+								               <td>(51-100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
+								            </tr>
+								            
+								            <tr class="aqi-orange">
+								               <td class="text-center">Unhealthy for Sensitive Groups</td>
+								               <td>(101-150) Members of sensitive groups may experience health effects. The general public is not likely to be affected. </td>
+								            </tr>
+								            
+								            <tr class="aqi-red">
+								               <td class="text-center">Unhealthy</td>
+								               <td>(151-200) Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
+								            </tr>
+								            
+								            <tr class="aqi-purple">
+								               <td class="text-center">Very Unhealthy </td>
+								               <td>(201-300) Health alert: everyone may experience more serious health effects.</td>
+								            </tr>
+								            
+								            <tr  class="aqi-maroon">
+								               <td class="text-center">Hazardous</td>
+								               <td>(301-500) Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
+								            </tr>   
+							          	</tbody>
 							        </table>
-
-							        <div class="panel panel-default" id="senators-panel">
-										<div class="panel-heading">
-											<h3 class="panel-title">Tweet senators</h3>
-										</div>
-										<div class="panel-body">
-											<div id="senators">
-				                            </div>
-				                            <div id="twitterB">
-				                            </div>
-										</div>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -169,41 +144,6 @@
 							</div>
 					  	</div>
 					</div>
-
-				</div>
-			</div>
-
-			<div class="row">
-                
-                 <div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Twitter Activism</h3>
-						</div>
-						<div class="panel-body">
-                            <p>If you want to see an improvement in your AQI, both state senators of your location are presented below and you can easily tweet them and demand change from your state senators right now!</p>
-							<div id="twitterDesc">
-                            </div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Senator</h3>
-						</div>
-						<div class="panel-body">
-							<div id="first-senator">
-                            </div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Senator</h3>
-
 					<!-- Weather panel -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -214,6 +154,18 @@
 							<p class="text-center">No data available for current location</p>
 						</div>
 	                </div>
+					<!-- Senators panel -->
+	                <div class="panel panel-default" id="senators-panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Twitter Activism</h3>
+						</div>
+						<div class="panel-body">
+                            <p>If you want to see an improvement in your AQI, both state senators of your location are presented below and you can easily tweet them and demand change from your state senators right now!</p>
+                            <div id="senators"></div>
+				            <div id="twitterB" class="text-center"></div>
+							
+						</div>
+					</div>
 				</div>
 			</div>
 		</main>

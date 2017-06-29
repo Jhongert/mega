@@ -98,8 +98,7 @@
             method: 'GET',
         }).done(function(response) {
             aqi = parseInt(response.breezometer_aqi);
-            var color = response.breezometer_color;
-           // var description = response.breezometer_description;
+          
             var recoChildren = response.random_recommendations.children;
             var recoHealth = response.random_recommendations.health;
             var recInside = response.random_recommendations.inside;
@@ -160,103 +159,32 @@
     function getProPublica(state){
         var senatorOne;
         var senatorTwo;
-        
-        $.ajax({
+         $.ajax({
             url: "https://api.propublica.org/congress/v1/members/senate/" + state + "/current.json",
             type: "GET",
             dataType: 'json',
             headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
         }).done(function(data){
-
-            $.ajax({
-                url: data.results[0].api_uri,
-                type: "GET",
-                dataType: 'json',
-                headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
-            }).done(function(data){
-                var result = data.results[0];
-                var firstSenator = $("#first-senator");
-                var p = $("<p>").text("Name: " + result.first_name + " " + result.middle_name + " " +result.last_name);
-                firstSenator.append(p);
-
-                p = $("<p>").text("Website: ");
-                a = $("<a>");
-                a.text(result.url).attr({href: result.url, target: "_blank"});
-                p.append(a);
-                firstSenator.append(p);
-                
-                senatorOne = result.twitter_account;
-                var senators = senatorTwo +" @" + senatorOne;
-                var link = document.createElement('a');
-                link.setAttribute('href', 'https://twitter.com/share');
-                link.setAttribute('class', 'twitter-share-button');
-                link.setAttribute('style', 'margin-top:5px;');
-                link.setAttribute('data-via', senators);
-
-                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " how will you improve this?" );
-                link.setAttribute("data-hashtags" , "megaPollution");
-                link.setAttribute("data-size" ,"large") ;
-                $('#twitterB').html(link);
-                twttr.widgets.load();  //very important
-                
-                
-                
-            });
-
-            $.ajax({
-                url: data.results[1].api_uri,
-                type: "GET",
-                dataType: 'json',
-                headers: {'X-API-Key': 'GGL4y5FC2p9Eea8fAmrR16BZOg90Xott8D8D6NVU'}
-            }).done(function(data){
-                console.log(data);
-                var result = data.results[0];
-                var secondSenator = $("#second-senator");
-                var p = $("<p>").text("Name: " + result.first_name + " " + result.middle_name + " " +result.last_name);
-                secondSenator.append(p);
-
-                p = $("<p>").text("Website: ");
-                a = $("<a>");
-                a.text(result.url).attr({href: result.url, target: "_blank"});
-                p.append(a);
-                secondSenator.append(p);
-                alert(senatorOne);
-                senatorTwo = result.twitter_account;
-                var senators = senatorTwo +" @" + senatorOne;
-                var link = document.createElement('a');
-                link.setAttribute('href', 'https://twitter.com/share');
-                link.setAttribute('class', 'twitter-share-button');
-                link.setAttribute('style', 'margin-top:5px;');
-                link.setAttribute('data-via', senators);
-
-                link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
-                link.setAttribute("data-hashtags" , "megaPollution");
-                $('#twitterB').html(link);
-                twttr.widgets.load();  //very important
-               
-            });
-
             var senators = $("#senators");
             var p = $("<p>").text(data.results[0].name + " | " + data.results[1].name);
             senators.html(p);
-
             
             senatorOne = data.results[0].twitter_id;
             senatorTwo = data.results[1].twitter_id;
 
-            var senators = senatorTwo +" @" + senatorOne;
+            var dataVia = senatorTwo +" @" + senatorOne;
             var link = document.createElement('a');
             link.setAttribute('href', 'https://twitter.com/share');
             link.setAttribute('class', 'twitter-share-button');
             link.setAttribute('style', 'margin-top:5px;');
-            link.setAttribute('data-via', senators);
+            link.setAttribute('data-via', dataVia);
 
             link.setAttribute("data-text" , "Our Air Quality is at " + aqi + " that's unacceptable" );
             link.setAttribute("data-hashtags" , "megaPollution" + " #fixItNow" );
             $('#twitterB').html(link);
             twttr.widgets.load();  //very important
 
-            $('#senators-panel').show();
+            $('#senators-panel').show(); 
         });
     }
 

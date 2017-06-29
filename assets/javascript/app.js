@@ -307,6 +307,8 @@ $(document).ready(function(){
     });
     
     $("#share").jsSocials({
-        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "stumbleupon"]
+        showLabel: false,
+        showCount: false,
+        shares: ["facebook", "email", "twitter", "googleplus", "linkedin", "stumbleupon"]
     });
 })

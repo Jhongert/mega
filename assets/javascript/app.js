@@ -1,4 +1,5 @@
-
+    
+    // glovals variables
 	var autocomplete;
 	var place = {}, lat, lng, latlng;
     var map, infowindow, marker, infowindowContent;
@@ -156,6 +157,7 @@
         });
     };
 
+    //get data from pro publica 
     function getProPublica(state){
         var senatorOne;
         var senatorTwo;
@@ -196,12 +198,14 @@
         });
     }
 
+    //get weather information from openweather
     function getWeatherInfo (city){
         if(city){
             var weatherApiKey = "db47186cb076286534ca88481910d2ef";
             $('#weather').html($('<h2 id="weather-city">').html(city));
 
             $.ajax({
+                // add this https://cors-anywhere.herokuapp.com, becouse openweather does not support https
                 url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey,
                 type: "GET",
                 dataType :'JSON'
@@ -268,6 +272,7 @@ $(document).ready(function(){
     }(document, 'script', 'facebook-jssdk'));
     
     
+    //use current position to get location
     $("#cur-location").on('click', function(event){
         event.preventDefault();
         $('#aqi-info').hide();
@@ -275,13 +280,10 @@ $(document).ready(function(){
         $('#loading').show();
         $('#location').val('');
 
-        
-
         navigator.geolocation.getCurrentPosition(function(result){
             
             var geocoder = new google.maps.Geocoder;
-            latlng = {lat:result.coords.latitude, lng:result.coords.longitude};
-            
+            latlng = {lat:result.coords.latitude, lng:result.coords.longitude};       
 
             geocoder.geocode({'location': latlng}, function(response){
                
@@ -298,23 +300,20 @@ $(document).ready(function(){
         });
     });
 
+    //logout link click event
     $('#logout').on('click', function(){
-        // Logout from facebook
         $("#confirm-logout").modal();
-       // FB.logout(function() {
-        //    window.location.replace('index.html');
-       // });
     });
     
+    //confirm logout
     $('#proceed-logout').on('click', function(){
         // Logout from facebook
-       
         FB.logout(function() {
             window.location.replace('index.html');
        });
     });
     
-
+    //social buttons
     $("#share").jsSocials({
         showLabel: false,
         showCount: false,

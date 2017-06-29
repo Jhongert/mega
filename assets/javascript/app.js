@@ -192,8 +192,7 @@
     function getFBUserData(){
         FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email'},
         function (response) {
-            document.getElementById('welcome').innerHTML = 'Welcome, ' + response.first_name+' '+response.last_name;
-            //document.getElementById('welcome').style.display = 'inline';
+            document.getElementById('welcome').innerHTML = 'Welcome, ' + response.first_name+' '+response.last_name + " | ";
         });
     }
 
@@ -301,11 +300,21 @@ $(document).ready(function(){
 
     $('#logout').on('click', function(){
         // Logout from facebook
-        FB.logout(function() {
-            window.location.replace('index.html');
-        });
+        $("#confirm-logout").modal();
+       // FB.logout(function() {
+        //    window.location.replace('index.html');
+       // });
     });
     
+    $('#proceed-logout').on('click', function(){
+        // Logout from facebook
+       
+        FB.logout(function() {
+            window.location.replace('index.html');
+       });
+    });
+    
+
     $("#share").jsSocials({
         showLabel: false,
         showCount: false,
